@@ -1,0 +1,74 @@
+import java.util.Random;
+
+public class PromTickets {
+
+    String gradeLevel = "";
+    String name = "";
+    int groupNumber = 0;
+    double price = 0;
+
+    Random random = new Random();
+
+    public PromTickets(String name, String gradeLevel, int groupNumber){
+        this.name = name;
+        this.gradeLevel = gradeLevel;
+        this.groupNumber = groupNumber;
+        System.out.println(name + " purchased a ticket for $" + processCost(gradeLevel,groupNumber) + ". The confirmation number for this sale is " + confirmationNumber());
+    }
+    public double processCost(String gradeLevel, int groupNumber){
+        switch(gradeLevel){
+            case "Freshman":
+                if(groupNumber == 1){
+                    price = 65.00;
+                }else if(groupNumber == 2){
+                    price = 98.00;
+                }else if (groupNumber < 5){
+                    price = 163.00;
+                }else{
+                    System.out.println("Invalid amount of people");
+                }
+                break;
+            case "Sophomore":
+                if(groupNumber == 1){
+                    price = 55.00;
+                }else if(groupNumber == 2){
+                    price = 83.00;
+                }else if(groupNumber < 5){
+                    price = 138.00;
+                }else{
+                    System.out.println("Invalid amount of people");
+                }
+                break;
+            case "Junior":
+                if(groupNumber == 1){
+                    price = 45.00;
+                }else if(groupNumber == 2){
+                    price = 68.00;
+                }else if(groupNumber < 5){
+                    price = 113.00;
+                }else{
+                    System.out.println("Invalid amount of people");
+                }
+                break;
+            case "Senior":
+                if(groupNumber == 1){
+                    price = 40.00;
+                }else if(groupNumber == 2){
+                    price = 60.00;
+                }else if(groupNumber < 5){
+                    price = 100.00;
+                }else{
+                    System.out.println("Invalid amount of people");
+                }
+        }
+        return price;
+    }
+    public String confirmationNumber(){
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String number = "";
+        for(int i = 0;i<6;i++){
+            number = number + characters.charAt(random.nextInt(characters.length() - 1));
+    }
+        return number;
+    }
+}
